@@ -1,0 +1,25 @@
+<div class="favorites-container">
+    <h2>Mes Favoris <span class="badge bg-secondary">{{ favoritesStore.totalFavorites() }}</span></h2>
+    
+    @if (favoritesStore.totalFavorites() === 0) {
+      <div class="alert alert-info">
+        Vous n'avez pas encore d'articles favoris.
+      </div>
+    } @else {
+      <div class="row">
+        @for (article of favoriteArticles(); track article.id) {
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="favorite-card">
+              <h3>{{ article.title }}</h3>
+              <p>{{ article.description }}</p>
+              <div class="card-actions" style="margin-top: auto;">
+                <button class="btn btn-danger" (click)="removeFromFavorites(article.id)">
+                  Retirer des favoris
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    } 
+  </div>
